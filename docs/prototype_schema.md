@@ -16,7 +16,7 @@ user_id | integer | not null, foreign key
 first_name | string |
 last_name | string |
 age | date |
-gender | string |
+gender | enum |
 residence | string |
 med_allergies | array[strings] |
 epilepsy_cause | text |
@@ -28,6 +28,7 @@ id  | integer | not null, primary key
 user_id | integer | not null, foreign key
 date | date | not null
 weight | integer |
+lactimal_level | integer |
 diet_description | text |
 
 ## seizures
@@ -35,12 +36,13 @@ column name | data type | details
 ------------|-----------|----------
 id  | integer | not null, primary key
 user_id | integer | not null, foreign key
-start_time | datetime | not null
-length | time |
-category | string |
+date | date | not null
+start_time | time | not null
+duration | time |
+category | enum |
 triggers | array[strings] |
 descriptions | array[strings] |
-post_event | array[strings] |
+post_events | array[strings] |
 custom_comment | text |
 
 ## medications
@@ -48,7 +50,7 @@ column name | data type | details
 ------------|-----------|----------
 id  | integer | not null, primary key
 user_id | integer | not null, foreign key
-name | string | not null
+name | enum | not null
 start_date | date | not null
 end_date | date |
 dosage | integer | not null
