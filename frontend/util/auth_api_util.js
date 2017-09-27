@@ -1,8 +1,8 @@
-export const signup = (formData) => {
+export const signup = (user) => {
   return $.ajax({
     method: "POST",
     url: `/api/users`,
-    data: formData,
+    data: user,
   });
 };
 
@@ -10,7 +10,7 @@ export const login = (user) => {
   return $.ajax({
     method: "POST",
     url: `/api/session`,
-    data: { user: user },
+    data: user,
   });
 };
 

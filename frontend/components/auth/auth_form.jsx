@@ -20,7 +20,7 @@ class AuthForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
+    const user = { user: Object.assign({}, this.state) };
     this.props.processForm(user)
   }
 
