@@ -13,9 +13,7 @@ class Api::SessionsController < ApplicationController
   def destroy
     if logged_in?
       logout
-      render json: {
-        username: nil,
-      }
+      render json: {}
     else
       @errors = ["You are not logged in"]
       render json: @errors, status: 422
