@@ -9,7 +9,7 @@ span, article, footer, time, small {
   padding: 0;
   border: 0;
   outline: 0;
-  font-family: 'Biryani', sans-serif;
+  font-family: 'Nunito', sans-serif;
   color: inherit;
   text-align: inherit;
   text-decoration: inherit;
@@ -35,9 +35,8 @@ img {
 
 button {
   background-color: $purple;
-  font-size: 1em;
   color: white;
-  border-radius: 0.5em;
+  border-radius: 7px;
   text-align: center;
   text-shadow: 1px 1px 1px black;
   transition: opacity 0.5s;
@@ -46,4 +45,8 @@ button {
     opacity: 0.6;
     cursor: pointer;
   }
+}
+
+.error-message {
+  color: $red-error;
 }

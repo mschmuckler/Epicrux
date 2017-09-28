@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -10,6 +11,26 @@ class AuthForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.generateAuthLink = this.generateAuthLink.bind(this);
+    this.generateErrorMessages = this.generateErrorMessages.bind(this);
+  }
+
+  generateAuthLink() {
+    if (this.props.formType === "Login") {
+      return <Link to="/signup" >Don't have an account yet? Go to Signup</Link>;
+    } else {
+      return <Link to="/login" >Already have an account? Go to Login</Link>;
+    }
+  }
+
+  generateErrorMessages() {
+    let errorMessages;
+    if (this.props.errors) {
+      errorMessages = this.props.errors.responseJSON.map((error, idx) => {
+        return <li key={ idx } className="error-message" >{ error }</li>;
+      });
+    }
+    return errorMessages;
   }
 
   handleChange(type) {
@@ -43,7 +64,11 @@ class AuthForm extends React.Component {
           <button onClick={ this.handleSubmit }
             type="submit"
             value={ this.props.formType }
-          >Submit</button>
+          >{ this.props.formType }</button>
+          { this.generateAuthLink() }
+          <ul>
+            { this.generateErrorMessages() }
+          </ul>
         </form>
       </div>
     );

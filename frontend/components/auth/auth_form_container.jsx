@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   formType = formType.charAt(0).toUpperCase() + formType.slice(1);
 
   return {
-    errors: state.errors,
+    errors: state.errors.auth,
     formType: formType,
   };
 };
