@@ -6,7 +6,6 @@ import NavbarContainer from './navbar/navbar_container';
 const Epicrux = (props) => {
   return (
     <div id="epicrux-app" >
-      Epicrux main
       <NavbarContainer />
       <Route exact path="/signup" component={ AuthFormContainer } />
       <Route exact path="/login" component={ AuthFormContainer } />

@@ -1,0 +1,11 @@
+@import '../colors.scss';
+
+#navbar {
+  background-color: $purple;
+  color: white;
+  height: 10%;
+}
+
+@media screen and (max-width:650px) {
+
+}
