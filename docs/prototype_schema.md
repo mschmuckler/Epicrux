@@ -39,7 +39,7 @@ user_id | integer | not null, foreign key
 date | date | not null
 start_time | time | not null
 duration | time |
-category | enum |
+category | string |
 triggers | array[strings] |
 descriptions | array[strings] |
 post_events | array[strings] |
