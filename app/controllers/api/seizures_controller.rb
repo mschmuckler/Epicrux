@@ -1,4 +1,4 @@
-class SeizuresController < ApplicationController
+class Api::SeizuresController < ApplicationController
   def create
     @seizure = Seizure.new(seizure_params)
     @seizure.user_id = current_user.id
@@ -15,6 +15,11 @@ class SeizuresController < ApplicationController
     render :show
   end
 
+  def index
+    @seizures = Seizure.where(user_id: current_user.id)
+    render :index
+  end
+
   private
   def seizure_params
     params.require(:seizure).permit(
@@ -22,10 +27,10 @@ class SeizuresController < ApplicationController
       :start_time,
       :duration,
       :category,
+      :custom_comment,
       triggers: [],
       descriptions: [],
       post_events: [],
-      :custom_comment
     )
   end
 end

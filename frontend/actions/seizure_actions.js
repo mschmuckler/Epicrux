@@ -9,6 +9,12 @@ export const fetchSeizure = (seizureId) => {
   );
 };
 
+export const fetchSeizures = () => {
+  return SeizureUtil.requestSeizures().then(
+    (seizures) => dispatch(receiveSeizure(seizures))
+  );
+};
+
 export const addSeizure = (seizureInput) => {
   return SeizureUtil.createSeizure(seizureInput).then(
     (seizure) => dispatch(receiveSeizure(seizure)),

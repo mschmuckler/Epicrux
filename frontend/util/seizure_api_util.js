@@ -12,3 +12,10 @@ export const requestSeizure = (id) => {
     url: `/api/seizures/${id}`,
   });
 };
+
+export const requestSeizures = () => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/seizures`,
+  });
+};
