@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929192607) do
+ActiveRecord::Schema.define(version: 20170930181958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "seizures", force: :cascade do |t|
     t.integer  "user_id",                     null: false
-    t.date     "date",                        null: false
-    t.time     "start_time",                  null: false
-    t.time     "duration",                    null: false
+    t.datetime "date",                        null: false
     t.string   "category"
     t.string   "triggers",       default: [],              array: true
     t.string   "descriptions",   default: [],              array: true
@@ -27,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170929192607) do
     t.text     "custom_comment"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "duration"
     t.index ["user_id"], name: "index_seizures_on_user_id", using: :btree
   end
 
