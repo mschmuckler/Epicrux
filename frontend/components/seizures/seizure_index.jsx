@@ -5,10 +5,14 @@ class SeizureIndex extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchSeizures();
+  }
+
   render() {
     return (
       <div>
-        Seizure index page
+        <h1>Seizure index page</h1>
       </div>
     );
   }
