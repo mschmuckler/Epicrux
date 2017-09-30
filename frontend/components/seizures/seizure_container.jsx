@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
-import { fetchSeizure, addSeizure } from '../../actions/seizure_actions';
-import SeizureIndex from 'seizure_index';
+import {
+  fetchSeizure,
+  fetchSeizures,
+  addSeizure
+} from '../../actions/seizure_actions';
+import SeizureIndex from './seizure_index';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,6 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSeizure: (seizureId) => dispatch(fetchSeizure(seizureId)),
+    fetchSeizures: () => dispatch(fetchSeizures()),
     addSeizure: (seizureInput) => dispatch(addSeizure(seizureInput)),
   };
 };
