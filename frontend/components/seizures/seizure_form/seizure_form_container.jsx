@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addSeizure } from '../../actions/seizure_actions';
+import { addSeizure } from '../../../actions/seizure_actions';
 import SeizureForm from './seizure_form';
 
 const mapStateToProps = (state) => {

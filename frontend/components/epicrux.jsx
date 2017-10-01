@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import AuthFormContainer from './auth/auth_form_container';
 import NavbarContainer from './navbar/navbar_container';
 import SeizureIndexContainer from './seizures/seizure_index_container';
-import SeizureFormContainer from './seizures/seizure_form_container';
+import SeizureFormContainer from './seizures/seizure_form/seizure_form_container';
 
 const Epicrux = (props) => {
   return (
