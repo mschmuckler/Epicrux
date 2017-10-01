@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchSeizure: (seizureId) => dispatch(fetchSeizure(seizureId)),
     fetchSeizures: () => dispatch(fetchSeizures()),
-    addSeizure: (seizureInput) => dispatch(addSeizure(seizureInput)),
   };
 };
 

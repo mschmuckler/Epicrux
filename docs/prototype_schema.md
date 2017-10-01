@@ -36,9 +36,8 @@ column name | data type | details
 ------------|-----------|----------
 id  | integer | not null, primary key
 user_id | integer | not null, foreign key
-date | date | not null
-start_time | time | not null
-duration | time |
+date | datetime | not null
+duration | integer |
 category | string |
 triggers | array[strings] |
 descriptions | array[strings] |
