@@ -1,5 +1,8 @@
 import React from 'react';
-import CheckboxForm from '../../input_forms/checkbox_form';
+import CheckboxOrRadioGroup from '../../input_forms/checkbox_radio_group';
+import TextareaGroup from '../../input_forms/textarea_group';
+import SelectGroup from '../../input_forms/select_group';
+import SliderGroup from '../../input_forms/slider_group';
 
 class SeizureForm extends React.Component {
   constructor(props) {
@@ -11,10 +14,12 @@ class SeizureForm extends React.Component {
       category: "",
       customComment: "",
       triggers: [],
+      descriptions: [],
+      postEvents: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleTriggersSelection = this.handleTriggersSelection.bind(this);
+    this.handleCheckboxSelection = this.handleCheckboxSelection.bind(this);
   }
 
   handleChange(type) {
@@ -23,21 +28,19 @@ class SeizureForm extends React.Component {
     };
   }
 
-  printState() {
-    console.log(this.state);
-  }
+  handleCheckboxSelection(type) {
+    return (e) => {
+      const newSelection = e.target.value;
+      let newSelectionArray;
 
-  handleTriggersSelection(e) {
-    const newSelection = e.target.value;
-    let newSelectionArray;
+      if(this.state[type].indexOf(newSelection) > -1) {
+        newSelectionArray = this.state[type].filter(s => s !== newSelection)
+      } else {
+        newSelectionArray = [...this.state[type], newSelection];
+      }
 
-    if(this.state.triggers.indexOf(newSelection) > -1) {
-      newSelectionArray = this.state.triggers.filter(s => s !== newSelection)
-    } else {
-      newSelectionArray = [...this.state.triggers, newSelection];
+      this.setState({ [type]: newSelectionArray });
     }
-
-    this.setState({ triggers: newSelectionArray });
   }
 
   render() {
@@ -49,35 +52,49 @@ class SeizureForm extends React.Component {
             value={ this.state.datetime }
             onChange={ this.handleChange("datetime") }
             type="datetime-local" />
-          Seconds:{ this.state.durationSeconds }
-          <input
+          <SliderGroup
+            title="Seconds"
             value={ this.state.durationSeconds }
-            onChange={ this.handleChange("durationSeconds") }
-            type="range"
+            controlFunc={ this.handleChange("durationSeconds") }
             max="59" />
-          Minutes:{ this.state.durationMinutes }
-          <input
+          <SliderGroup
+            title="Minutes"
             value={ this.state.durationMinutes }
-            onChange={ this.handleChange("durationMinutes") }
-            type="range"
+            controlFunc={ this.handleChange("durationMinutes") }
             max="15" />
-          <select
-            value={ this.state.category }
-            onChange={ this.handleChange("category") } >
-            <option disabled value="">--Select a Category--</option>
-            <option value="aura" >Aura</option>
-            <option value="fdsf" >fsdf</option>
-          </select>
-          <CheckboxForm
+          <SelectGroup
+            name="category"
+            options={ ["opt1", "opt2", "opt3"] }
+            placeholder="Select a Category"
+            controlFunc={ this.handleChange("category") } />
+          <CheckboxOrRadioGroup
             title="Triggers"
             type="checkbox"
             setName="triggers"
-            options={ ["dog", "cat", "horse"] }
+            options={ ["trig1", "trig2", "trig3"] }
             selectedOptions={ this.state.triggers }
-            controlFunc={ this.handleTriggersSelection } />
-          <textarea
-            value={ this.state.customComment }
-            onChange={ this.handleChange("customComment") } />
+            controlFunc={ this.handleCheckboxSelection("triggers") } />
+          <CheckboxOrRadioGroup
+            title="Descriptions"
+            type="checkbox"
+            setName="descriptions"
+            options={ ["desc1", "desc2", "desc3"] }
+            selectedOptions={ this.state.descriptions }
+            controlFunc={ this.handleCheckboxSelection("descriptions") } />
+          <CheckboxOrRadioGroup
+            title="Post Events"
+            type="checkbox"
+            setName="postEvents"
+            options={ ["post1", "post2", "post3"] }
+            selectedOptions={ this.state.postEvents }
+            controlFunc={ this.handleCheckboxSelection("postEvents") } />
+          <TextareaGroup
+            title="Custom Comment"
+            rows="5"
+            name="customComment"
+            content={ this.state.customComment }
+            placeholder="Enter optional comment here"
+            controlFunc={ this.handleChange("customComment") } />
         </form>
         <button onClick={ this.printState.bind(this) } >getState</button>
       </div>
