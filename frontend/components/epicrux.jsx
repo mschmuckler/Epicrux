@@ -12,7 +12,7 @@ const Epicrux = (props) => {
       <Route exact path="/signup" component={ AuthFormContainer } />
       <Route exact path="/login" component={ AuthFormContainer } />
       <Route exact path="/seizures" component={ SeizureIndexContainer } />
-      <Route exact path="/seizures/input" component={ SeizureFormContainer } />
+      <Route exact path="/seizures/new" component={ SeizureFormContainer } />
     </div>
   );
 };

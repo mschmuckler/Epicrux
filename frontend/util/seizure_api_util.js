@@ -1,8 +1,8 @@
-export const createSeizure = (seizure) => {
+export const createSeizure = (seizureInput) => {
   return $.ajax({
     method: "POST",
     url: "/api/seizures",
-    data: { seizure: seizure },
+    data: { seizure: seizureInput },
   });
 };
 

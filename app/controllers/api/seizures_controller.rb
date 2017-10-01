@@ -6,7 +6,7 @@ class Api::SeizuresController < ApplicationController
       render :show
     else
       @errors = @seizure.errors.full_messages
-      render json: @errors, status: 422
+      render json: ["Date & Time can't be blank"], status: 422
     end
   end
 
@@ -24,7 +24,6 @@ class Api::SeizuresController < ApplicationController
   def seizure_params
     params.require(:seizure).permit(
       :date,
-      :start_time,
       :duration,
       :category,
       :custom_comment,

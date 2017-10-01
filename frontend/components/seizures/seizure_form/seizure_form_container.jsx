@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SeizureForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SeizureForm);

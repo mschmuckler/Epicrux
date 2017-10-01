@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { generateErrorMessages } from '../../util/error_message_util';
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -12,7 +13,6 @@ class AuthForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.generateAuthLink = this.generateAuthLink.bind(this);
-    this.generateErrorMessages = this.generateErrorMessages.bind(this);
   }
 
   generateAuthLink() {
@@ -21,16 +21,6 @@ class AuthForm extends React.Component {
     } else {
       return <Link to="/login" >Already have an account? Go to Login</Link>;
     }
-  }
-
-  generateErrorMessages() {
-    let errorMessages;
-    if (this.props.errors) {
-      errorMessages = this.props.errors.responseJSON.map((error, idx) => {
-        return <li key={ idx } className="error-message" >{ error }</li>;
-      });
-    }
-    return errorMessages;
   }
 
   handleChange(type) {
@@ -66,9 +56,7 @@ class AuthForm extends React.Component {
             value={ this.props.formType }
           >{ this.props.formType }</button>
           { this.generateAuthLink() }
-          <ul>
-            { this.generateErrorMessages() }
-          </ul>
+          { generateErrorMessages(this.props.errors) }
         </form>
       </div>
     );

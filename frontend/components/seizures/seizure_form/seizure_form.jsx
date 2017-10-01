@@ -1,4 +1,5 @@
 import React from 'react';
+import { generateErrorMessages } from '../../../util/error_message_util';
 import CheckboxOrRadioGroup from '../../input_forms/checkbox_radio_group';
 import TextareaGroup from '../../input_forms/textarea_group';
 import SelectGroup from '../../input_forms/select_group';
@@ -18,6 +19,7 @@ class SeizureForm extends React.Component {
       postEvents: [],
     };
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCheckboxSelection = this.handleCheckboxSelection.bind(this);
   }
@@ -43,11 +45,27 @@ class SeizureForm extends React.Component {
     }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const durationInSeconds = parseInt(this.state.durationSeconds) + (parseInt(this.state.durationMinutes) * 60);
+    const seizureInput = {
+      date: this.state.datetime,
+      duration: durationInSeconds,
+      category: this.state.category,
+      custom_comment: this.state.customComment,
+      triggers: this.state.triggers,
+      descriptions: this.state.descriptions,
+      post_events: this.state.post_events,
+    };
+
+    this.props.addSeizure(seizureInput);
+  }
+
   render() {
     return (
       <div>
         <h1>Seizure Input Form</h1>
-        <form>
+        <form onSubmit={ this.handleSubmit } >
           <input
             value={ this.state.datetime }
             onChange={ this.handleChange("datetime") }
@@ -95,8 +113,11 @@ class SeizureForm extends React.Component {
             content={ this.state.customComment }
             placeholder="Enter optional comment here"
             controlFunc={ this.handleChange("customComment") } />
+          <input
+            type="submit"
+            value="Submit" />
         </form>
-        <button onClick={ this.printState.bind(this) } >getState</button>
+        { generateErrorMessages(this.props.errors) }
       </div>
     );
   }
