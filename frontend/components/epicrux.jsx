@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import AuthFormContainer from './auth/auth_form_container';
 import NavbarContainer from './navbar/navbar_container';
 import SeizureIndexContainer from './seizures/seizure_index_container';
@@ -9,10 +10,10 @@ const Epicrux = (props) => {
   return (
     <div id="epicrux-app" >
       <NavbarContainer />
-      <Route exact path="/signup" component={ AuthFormContainer } />
-      <Route exact path="/login" component={ AuthFormContainer } />
-      <Route exact path="/seizures" component={ SeizureIndexContainer } />
-      <Route exact path="/seizures/new" component={ SeizureFormContainer } />
+      <AuthRoute exact path="/signup" component={ AuthFormContainer } />
+      <AuthRoute exact path="/login" component={ AuthFormContainer } />
+      <ProtectedRoute exact path="/seizures" component={ SeizureIndexContainer } />
+      <ProtectedRoute exact path="/seizures/new" component={ SeizureFormContainer } />
     </div>
   );
 };

@@ -34,15 +34,7 @@ img {
 }
 
 button {
-  background-color: $purple;
-  color: white;
-  border-radius: 7px;
-  text-align: center;
-  text-shadow: 1px 1px 1px black;
-  transition: opacity 0.5s;
-
   &:hover {
-    opacity: 0.6;
     cursor: pointer;
   }
 }
