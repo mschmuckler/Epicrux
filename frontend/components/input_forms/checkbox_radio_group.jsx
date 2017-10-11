@@ -2,7 +2,7 @@ import React from 'react';
 
 const CheckboxOrRadioGroup = (props) => {
   return (
-    <div>
+    <div className={ props.className } >
       <label className="form-label" >{ props.title }</label>
       <div className="checkbox-group" >
         {props.options.map(opt => {

@@ -65,57 +65,72 @@ class SeizureForm extends React.Component {
     return (
       <div>
         <h1>Seizure Input Form</h1>
-        <form onSubmit={ this.handleSubmit } >
-          <input
-            value={ this.state.datetime }
-            onChange={ this.handleChange("datetime") }
-            type="datetime-local" />
-          <SliderGroup
-            title="Seconds"
-            value={ this.state.durationSeconds }
-            controlFunc={ this.handleChange("durationSeconds") }
-            max="59" />
-          <SliderGroup
-            title="Minutes"
-            value={ this.state.durationMinutes }
-            controlFunc={ this.handleChange("durationMinutes") }
-            max="15" />
-          <SelectGroup
-            name="category"
-            options={ ["opt1", "opt2", "opt3"] }
-            placeholder="Select a Category"
-            controlFunc={ this.handleChange("category") } />
-          <CheckboxOrRadioGroup
-            title="Triggers"
-            type="checkbox"
-            setName="triggers"
-            options={ ["trig1", "trig2", "trig3"] }
-            selectedOptions={ this.state.triggers }
-            controlFunc={ this.handleCheckboxSelection("triggers") } />
-          <CheckboxOrRadioGroup
-            title="Descriptions"
-            type="checkbox"
-            setName="descriptions"
-            options={ ["desc1", "desc2", "desc3"] }
-            selectedOptions={ this.state.descriptions }
-            controlFunc={ this.handleCheckboxSelection("descriptions") } />
-          <CheckboxOrRadioGroup
-            title="Post Events"
-            type="checkbox"
-            setName="postEvents"
-            options={ ["post1", "post2", "post3"] }
-            selectedOptions={ this.state.postEvents }
-            controlFunc={ this.handleCheckboxSelection("postEvents") } />
-          <TextareaGroup
-            title="Custom Comment"
-            rows="5"
-            name="customComment"
-            content={ this.state.customComment }
-            placeholder="Enter optional comment here"
-            controlFunc={ this.handleChange("customComment") } />
-          <input
-            type="submit"
-            value="Submit" />
+        <form onSubmit={ this.handleSubmit } className="container" >
+          <div className="row" >
+            <input
+              className="test-border col-md-4"
+              value={ this.state.datetime }
+              onChange={ this.handleChange("datetime") }
+              type="datetime-local" />
+            <SliderGroup
+              className="test-border col-md-4"
+              title="Seconds"
+              value={ this.state.durationSeconds }
+              controlFunc={ this.handleChange("durationSeconds") }
+              max="59" />
+            <SliderGroup
+              className="test-border col-md-4"
+              title="Minutes"
+              value={ this.state.durationMinutes }
+              controlFunc={ this.handleChange("durationMinutes") }
+              max="15" />
+            <SelectGroup
+              className="test-border"
+              name="category"
+              options={ ["opt1", "opt2", "opt3"] }
+              placeholder="Select a Category"
+              controlFunc={ this.handleChange("category") } />
+          </div>
+          <div className="row" >
+            <CheckboxOrRadioGroup
+              className="test-border col-md-4"
+              title="Triggers"
+              type="checkbox"
+              setName="triggers"
+              options={ ["trig1", "trig2", "trig3"] }
+              selectedOptions={ this.state.triggers }
+              controlFunc={ this.handleCheckboxSelection("triggers") } />
+            <CheckboxOrRadioGroup
+              className="test-border col-md-4"
+              title="Descriptions"
+              type="checkbox"
+              setName="descriptions"
+              options={ ["desc1", "desc2", "desc3"] }
+              selectedOptions={ this.state.descriptions }
+              controlFunc={ this.handleCheckboxSelection("descriptions") } />
+            <CheckboxOrRadioGroup
+              className="test-border col-md-4"
+              title="Post Events"
+              type="checkbox"
+              setName="postEvents"
+              options={ ["post1", "post2", "post3"] }
+              selectedOptions={ this.state.postEvents }
+              controlFunc={ this.handleCheckboxSelection("postEvents") } />
+          </div>
+          <div className="row" >
+            <TextareaGroup
+              className="test-border col-md-8"
+              title="Custom Comment"
+              rows="5"
+              name="customComment"
+              content={ this.state.customComment }
+              placeholder="Enter optional comment here"
+              controlFunc={ this.handleChange("customComment") } />
+            <input
+              className="col-md-4"
+              type="submit"
+              value="Submit" />
+          </div>
         </form>
         { generateErrorMessages(this.props.errors) }
       </div>

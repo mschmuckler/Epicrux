@@ -4,7 +4,7 @@ const SliderGroup = (props) => {
   const visibleValue = (props.value === "") ? "X" : props.value;
 
   return (
-    <div className="form-group" >
+    <div className={ "form-group " + props.className } >
       <label className="form-label">{ `${props.title}: ${visibleValue}` }
         <input
           value={ props.value }

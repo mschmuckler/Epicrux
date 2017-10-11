@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SelectGroup = (props) => (
-  <div className="form-group" >
+  <div className={ "form-group " + props.className } >
     <select
       name={ props.name }
       value={ props.selectedOption }

@@ -1,15 +1,11 @@
 @import '../colors.scss';
 
 #auth-form {
-  height: 90%;
-  width: 100%;
   background-color: $lightest-purple;
   display: flex;
   justify-content: center;
 
   form {
-    width: 400px;
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,9 +38,4 @@
 }
 
 @media screen and (max-width:650px) {
-  #auth-form {
-    form {
-      width: 300px;
-    }
-  }
 }
