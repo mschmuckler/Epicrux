@@ -1,5 +1,7 @@
 import React from 'react';
 import { generateErrorMessages } from '../../../util/error_message_util';
+import DatePicker from 'material-ui/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
 import CheckboxOrRadioGroup from '../../input_forms/checkbox_radio_group';
 import TextareaGroup from '../../input_forms/textarea_group';
 import SelectGroup from '../../input_forms/select_group';
@@ -9,7 +11,8 @@ class SeizureForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datetime: "",
+      date: null,
+      timeOfDay: null,
       durationMinutes: "",
       durationSeconds: "",
       category: "",
@@ -21,6 +24,8 @@ class SeizureForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleCheckboxSelection = this.handleCheckboxSelection.bind(this);
   }
 
@@ -28,6 +33,14 @@ class SeizureForm extends React.Component {
     return (e) => {
       this.setState({ [type]: e.target.value });
     };
+  }
+
+  handleDateChange(e, date) {
+    this.setState({ date: date });
+  }
+
+  handleTimeChange(e, time) {
+    this.setState({ timeOfDay: time });
   }
 
   handleCheckboxSelection(type) {
@@ -67,25 +80,32 @@ class SeizureForm extends React.Component {
         <h1>Seizure Input Form</h1>
         <form onSubmit={ this.handleSubmit } className="container" >
           <div className="row" >
-            <input
-              className="test-border col-md-4"
-              value={ this.state.datetime }
-              onChange={ this.handleChange("datetime") }
-              type="datetime-local" />
+            <DatePicker
+              className="test-border col-md-6"
+              hintText="Date"
+              value={ this.state.date }
+              onChange={ this.handleDateChange } />
+            <TimePicker
+              className="test-border col-md-6"
+              hintText="Time of Day"
+              value={ this.state.timeOfDay }
+              onChange={ this.handleTimeChange }/>
+          </div>
+          <div className="row" >
             <SliderGroup
-              className="test-border col-md-4"
+              className="test-border col-md-3"
               title="Seconds"
               value={ this.state.durationSeconds }
               controlFunc={ this.handleChange("durationSeconds") }
               max="59" />
             <SliderGroup
-              className="test-border col-md-4"
+              className="test-border col-md-3"
               title="Minutes"
               value={ this.state.durationMinutes }
               controlFunc={ this.handleChange("durationMinutes") }
               max="15" />
             <SelectGroup
-              className="test-border"
+              className="test-border col-md-6"
               name="category"
               options={ ["opt1", "opt2", "opt3"] }
               placeholder="Select a Category"
@@ -132,6 +152,7 @@ class SeizureForm extends React.Component {
               value="Submit" />
           </div>
         </form>
+        <button onClick={ ()=>{console.log(this.state)} } >getState</button>
         { generateErrorMessages(this.props.errors) }
       </div>
     );

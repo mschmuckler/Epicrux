@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Epicrux from './epicrux';
 
 const Root = (props) => {
@@ -8,7 +9,9 @@ const Root = (props) => {
     <div id="comp-root" >
       <Provider store={ props.store } >
         <HashRouter>
-          <Epicrux />
+          <MuiThemeProvider>
+            <Epicrux />
+          </MuiThemeProvider>
         </HashRouter>
       </Provider>
     </div>
