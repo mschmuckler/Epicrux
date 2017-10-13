@@ -172,7 +172,7 @@ class SeizureForm extends React.Component {
               controlFunc={ this.handleCheckboxSelection("postEvents") } />
           </div>
           <div className="row" >
-            <div className="col-md-8 center-content" >
+            <div className="col-md-12 center-content" >
               <TextField
                 hintText="Enter comment here"
                 floatingLabelText="Custom Comment"
@@ -180,15 +180,17 @@ class SeizureForm extends React.Component {
                 multiLine={ true }
                 rows={ 1 } />
             </div>
-            <div className="col-md-4" style={{ "marginTop": "20px" }} >
+          </div>
+          <div className="row" >
+            <div className="col-md-12" style={{ "marginTop": "20px" }} >
               <RaisedButton
                 label="Submit"
-                onClick={ this.handleSubmit } />
+                onClick={ this.handleSubmit }
+                fullWidth={ true } />
               { generateErrorMessages(this.props.errors) }
             </div>
           </div>
         </form>
-        <button onClick={ ()=>{console.log(this.state)} } >getState</button>
       </div>
     );
   }

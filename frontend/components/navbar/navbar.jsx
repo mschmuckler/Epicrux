@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import NavbarDropdown from './navbar_dropdown';
 
 const Navbar = (props) => {
   return (
@@ -6,12 +8,17 @@ const Navbar = (props) => {
       <img
         id="epicrux-logo"
         src={ window.staticImages.epicruxLogo } />
-      <div>
-        <button>Seizures</button>
+      <div id="navbar-items" >
+        <Link to="/seizures" >
+          <button>Seizures</button>
+        </Link>
         <button>Medications</button>
         <button>Procedures</button>
         <button>VNS Neuro</button>
         <button onClick={ props.logout } >Logout</button>
+      </div>
+      <div id="navbar-dropdown" >        
+        <NavbarDropdown />
       </div>
     </nav>
   );

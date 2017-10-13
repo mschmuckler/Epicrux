@@ -1,22 +1,33 @@
 @import '../colors.scss';
 
+
 #navbar {
   background-color: $purple;
+  color: white;
   height: 10%;
   min-height: 60px;
   display: flex;
   align-items: center;
   padding: 5px;
-}
 
-#navbar-row {
-  height: 100%;
-  width: 100%;
+  a {
+    color: white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 #epicrux-logo {
   width: auto;
   height: 100%;
+}
+
+#navbar-items {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 #navbar-dropdown {
@@ -25,6 +36,21 @@
 
 @media screen and (max-width:650px) {
   #navbar-dropdown {
-    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #navbar-dropdown-icon {
+    height: 60px;
+    width: auto;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  #navbar-items {
+    display: none;
   }
 }
