@@ -2,10 +2,12 @@ import React from 'react';
 import { generateErrorMessages } from '../../../util/error_message_util';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
+import Slider from 'material-ui/Slider';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import CheckboxOrRadioGroup from '../../input_forms/checkbox_radio_group';
-import TextareaGroup from '../../input_forms/textarea_group';
-import SelectGroup from '../../input_forms/select_group';
-import SliderGroup from '../../input_forms/slider_group';
 
 class SeizureForm extends React.Component {
   constructor(props) {
@@ -13,8 +15,8 @@ class SeizureForm extends React.Component {
     this.state = {
       date: null,
       timeOfDay: null,
-      durationMinutes: "",
-      durationSeconds: "",
+      durationMinutes: 0,
+      durationSeconds: 0,
       category: "",
       customComment: "",
       triggers: [],
@@ -23,16 +25,17 @@ class SeizureForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleSecondsChange = this.handleSecondsChange.bind(this);
+    this.handleMinutesChange = this.handleMinutesChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleCheckboxSelection = this.handleCheckboxSelection.bind(this);
   }
 
-  handleChange(type) {
-    return (e) => {
-      this.setState({ [type]: e.target.value });
-    };
+  handleTextChange(e) {
+    this.setState({ customComment: e.target.value });
   }
 
   handleDateChange(e, date) {
@@ -41,6 +44,18 @@ class SeizureForm extends React.Component {
 
   handleTimeChange(e, time) {
     this.setState({ timeOfDay: time });
+  }
+
+  handleSecondsChange(e, value) {
+    this.setState({ durationSeconds: value });
+  }
+
+  handleMinutesChange(e, value) {
+    this.setState({ durationMinutes: value });
+  }
+
+  handleCategoryChange(e, index, value) {
+    this.setState({ category: value });
   }
 
   handleCheckboxSelection(type) {
@@ -77,39 +92,51 @@ class SeizureForm extends React.Component {
   render() {
     return (
       <div>
-        <h1>Seizure Input Form</h1>
-        <form onSubmit={ this.handleSubmit } className="container" >
+        <h1>Seizure Input</h1>
+        <form className="container" >
           <div className="row" >
-            <DatePicker
-              className="test-border col-md-6"
-              hintText="Date"
-              value={ this.state.date }
-              onChange={ this.handleDateChange } />
-            <TimePicker
-              className="test-border col-md-6"
-              hintText="Time of Day"
-              value={ this.state.timeOfDay }
-              onChange={ this.handleTimeChange }/>
+            <div className="test-border col-md-6 center-content" >
+              <DatePicker
+                hintText="Date"
+                value={ this.state.date }
+                onChange={ this.handleDateChange } />
+            </div>
+            <div className="test-border col-md-6 center-content" >
+              <TimePicker
+                hintText="Time of Day"
+                value={ this.state.timeOfDay }
+                onChange={ this.handleTimeChange }/>
+            </div>
           </div>
           <div className="row" >
-            <SliderGroup
-              className="test-border col-md-3"
-              title="Seconds"
-              value={ this.state.durationSeconds }
-              controlFunc={ this.handleChange("durationSeconds") }
-              max="59" />
-            <SliderGroup
-              className="test-border col-md-3"
-              title="Minutes"
-              value={ this.state.durationMinutes }
-              controlFunc={ this.handleChange("durationMinutes") }
-              max="15" />
-            <SelectGroup
-              className="test-border col-md-6"
-              name="category"
-              options={ ["opt1", "opt2", "opt3"] }
-              placeholder="Select a Category"
-              controlFunc={ this.handleChange("category") } />
+            <div className="test-border col-md-3" >
+              <span>{ `Seconds: ${this.state.durationSeconds}` }</span>
+              <Slider
+                value={ this.state.durationSeconds }
+                onChange={ this.handleSecondsChange }
+                min={ 0 }
+                max={ 59 }
+                step={ 1 } />
+            </div>
+            <div className="test-border col-md-3" >
+              <span>{ `Minutes: ${this.state.durationMinutes}` }</span>
+              <Slider
+                value={ this.state.durationMinutes }
+                onChange={ this.handleMinutesChange }
+                min={ 0 }
+                max={ 59 }
+                step={ 1 } />
+            </div>
+            <div className="test-border col-md-6 center-content" >
+              <SelectField
+                floatingLabelText="Category"
+                value={ this.state.category }
+                onChange={ this.handleCategoryChange } >
+                  <MenuItem value={ "opt1" } primaryText="Opt1" />
+                  <MenuItem value={ "opt2" } primaryText="Opt2" />
+                  <MenuItem value={ "opt3" } primaryText="Opt3" />
+              </SelectField>
+            </div>
           </div>
           <div className="row" >
             <CheckboxOrRadioGroup
@@ -138,22 +165,23 @@ class SeizureForm extends React.Component {
               controlFunc={ this.handleCheckboxSelection("postEvents") } />
           </div>
           <div className="row" >
-            <TextareaGroup
-              className="test-border col-md-8"
-              title="Custom Comment"
-              rows="5"
-              name="customComment"
-              content={ this.state.customComment }
-              placeholder="Enter optional comment here"
-              controlFunc={ this.handleChange("customComment") } />
-            <input
-              className="col-md-4"
-              type="submit"
-              value="Submit" />
+            <div className="test-border col-md-8 center-content" >
+              <TextField
+                hintText="Enter comment here"
+                floatingLabelText="Custom Comment"
+                onChange={ this.handleTextChange }
+                multiLine={ true }
+                rows={ 1 } />
+            </div>
+            <div className="test-border col-md-4" style={{ "marginTop": "10px" }} >
+              <RaisedButton
+                label="Submit"
+                onClick={ this.handleSubmit } />
+              { generateErrorMessages(this.props.errors) }
+            </div>
           </div>
         </form>
         <button onClick={ ()=>{console.log(this.state)} } >getState</button>
-        { generateErrorMessages(this.props.errors) }
       </div>
     );
   }

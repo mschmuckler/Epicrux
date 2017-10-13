@@ -4,12 +4,18 @@ const CheckboxOrRadioGroup = (props) => {
   return (
     <div className={ props.className } >
       <label className="form-label" >{ props.title }</label>
-      <div className="checkbox-group" >
+      <div
+        className="checkbox-group"
+        style={{
+          "display": "flex",
+          "flexDirection": "column",
+        }}
+      >
         {props.options.map(opt => {
           return (
             <label key={ opt } className="form-label capitalize">
               <input
-                className="form-checkbox"
+                className="checkbox-custom"
                 name={ props.setName }
                 onChange={ props.controlFunc }
                 value={ opt }
