@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -41,11 +42,20 @@ class NavbarDropdown extends React.Component {
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
           onRequestClose={ this.handleRequestClose } >
-          <Menu>
-            <MenuItem primaryText="Refresh" />
-            <MenuItem primaryText="Help &amp; feedback" />
-            <MenuItem primaryText="Settings" />
-            <MenuItem primaryText="Sign out" />
+          <Menu style={{ "backgroundColor": "#7b1fa2" }}>
+            <Link to="/seizures" >
+              <MenuItem
+                primaryText="Seizures"
+                onClick={ this.handleRequestClose }
+                style={{ "color": "white" }} />
+            </Link>
+            <MenuItem primaryText="Medications" style={{ "color": "white" }} />
+            <MenuItem primaryText="Procedures" style={{ "color": "white" }} />
+            <MenuItem primaryText="VNS Neuro" style={{ "color": "white" }} />
+            <MenuItem
+              primaryText="Logout"
+              onClick={ this.props.logout }
+              style={{ "color": "white" }} />
           </Menu>
         </Popover>
       </div>

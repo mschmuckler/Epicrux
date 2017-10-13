@@ -17,8 +17,8 @@ const Navbar = (props) => {
         <button>VNS Neuro</button>
         <button onClick={ props.logout } >Logout</button>
       </div>
-      <div id="navbar-dropdown" >        
-        <NavbarDropdown />
+      <div id="navbar-dropdown" >
+        <NavbarDropdown logout={ props.logout } />
       </div>
     </nav>
   );

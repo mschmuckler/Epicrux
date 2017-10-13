@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class SeizureIndex extends React.Component {
   constructor(props) {
@@ -16,8 +18,9 @@ class SeizureIndex extends React.Component {
     return Object.values(this.props.seizures).map(seizure => {
       return (
         <tr key={ seizure.id } >
+          <td>{ seizure.date.slice(0,10) }</td>
+          <td>{ seizure.date.slice(11,16) }</td>
           <td>{ seizure.category }</td>
-          <td>{ seizure.date }</td>
           <td>{ seizure.duration }</td>
         </tr>
       );
@@ -27,8 +30,9 @@ class SeizureIndex extends React.Component {
   generateHeaderRow() {
     return (
       <tr key="seizure-table-header" >
-        <td>Category</td>
         <td>Date</td>
+        <td>Time</td>
+        <td>Category</td>
         <td>Duration</td>
       </tr>
     );
@@ -36,16 +40,25 @@ class SeizureIndex extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Seizure index page</h1>
-        <table>
-          <thead>
-            { this.generateHeaderRow() }
-          </thead>
-          <tbody>
-            { this.generateSeizureRows() }
-          </tbody>
-        </table>
+      <div className="container" >
+        <div className="row" >
+          <h1 className="test-border col-md-6" >Seizures</h1>
+          <div className="test-border col-md-6" >  
+            <Link to="/seizure-input"  >
+              <RaisedButton label="Add New" />
+            </Link>
+          </div>
+        </div>
+        <div className="row" >
+          <table className="test-border col-md-12" >
+            <thead>
+              { this.generateHeaderRow() }
+            </thead>
+            <tbody>
+              { this.generateSeizureRows() }
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

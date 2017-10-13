@@ -98,100 +98,100 @@ class SeizureForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Seizure Input</h1>
-        <form className="container" >
-          <div className="row" >
-            <div className="col-md-6 center-content" >
-              <DatePicker
-                hintText="Date"
-                value={ this.state.date }
-                onChange={ this.handleDateChange } />
-            </div>
-            <div className="col-md-6 center-content" >
-              <TimePicker
-                hintText="Time of Day"
-                value={ this.state.timeOfDay }
-                onChange={ this.handleTimeChange }/>
-            </div>
+      <form className="container" >
+        <div className="row" >
+          <h1 className="col-md-12" >Seizure Input</h1>
+        </div>
+        <div className="row" >
+          <div className="col-md-6 center-content" >
+            <DatePicker
+              hintText="Date"
+              value={ this.state.date }
+              onChange={ this.handleDateChange } />
           </div>
-          <div className="row" >
-            <div className="col-md-3" >
-              <span>{ `Seconds: ${this.state.durationSeconds}` }</span>
-              <Slider
-                value={ this.state.durationSeconds }
-                onChange={ this.handleSecondsChange }
-                min={ 0 }
-                max={ 59 }
-                step={ 1 } />
-            </div>
-            <div className="col-md-3" >
-              <span>{ `Minutes: ${this.state.durationMinutes}` }</span>
-              <Slider
-                value={ this.state.durationMinutes }
-                onChange={ this.handleMinutesChange }
-                min={ 0 }
-                max={ 59 }
-                step={ 1 } />
-            </div>
-            <div className="col-md-6 center-content" >
-              <SelectField
-                floatingLabelText="Category"
-                value={ this.state.category }
-                onChange={ this.handleCategoryChange } >
-                  <MenuItem value={ "opt1" } primaryText="Opt1" />
-                  <MenuItem value={ "opt2" } primaryText="Opt2" />
-                  <MenuItem value={ "opt3" } primaryText="Opt3" />
-              </SelectField>
-            </div>
+          <div className="col-md-6 center-content" >
+            <TimePicker
+              hintText="Time of Day"
+              value={ this.state.timeOfDay }
+              onChange={ this.handleTimeChange }/>
           </div>
-          <div className="row" >
-            <CheckboxOrRadioGroup
-              className="col-md-4"
-              title="Triggers"
-              type="checkbox"
-              setName="triggers"
-              options={ ["trig1", "trig2", "trig3"] }
-              selectedOptions={ this.state.triggers }
-              controlFunc={ this.handleCheckboxSelection("triggers") } />
-            <CheckboxOrRadioGroup
-              className="col-md-4"
-              title="Descriptions"
-              type="checkbox"
-              setName="descriptions"
-              options={ ["desc1", "desc2", "desc3"] }
-              selectedOptions={ this.state.descriptions }
-              controlFunc={ this.handleCheckboxSelection("descriptions") } />
-            <CheckboxOrRadioGroup
-              className="col-md-4"
-              title="Post Events"
-              type="checkbox"
-              setName="postEvents"
-              options={ ["post1", "post2", "post3"] }
-              selectedOptions={ this.state.postEvents }
-              controlFunc={ this.handleCheckboxSelection("postEvents") } />
+        </div>
+        <div className="row" >
+          <div className="col-md-3" >
+            <span>{ `Seconds: ${this.state.durationSeconds}` }</span>
+            <Slider
+              value={ this.state.durationSeconds }
+              onChange={ this.handleSecondsChange }
+              min={ 0 }
+              max={ 59 }
+              step={ 1 } />
           </div>
-          <div className="row" >
-            <div className="col-md-12 center-content" >
-              <TextField
-                hintText="Enter comment here"
-                floatingLabelText="Custom Comment"
-                onChange={ this.handleTextChange }
-                multiLine={ true }
-                rows={ 1 } />
-            </div>
+          <div className="col-md-3" >
+            <span>{ `Minutes: ${this.state.durationMinutes}` }</span>
+            <Slider
+              value={ this.state.durationMinutes }
+              onChange={ this.handleMinutesChange }
+              min={ 0 }
+              max={ 59 }
+              step={ 1 } />
           </div>
-          <div className="row" >
-            <div className="col-md-12" style={{ "marginTop": "20px" }} >
-              <RaisedButton
-                label="Submit"
-                onClick={ this.handleSubmit }
-                fullWidth={ true } />
-              { generateErrorMessages(this.props.errors) }
-            </div>
+          <div className="col-md-6 center-content" >
+            <SelectField
+              floatingLabelText="Category"
+              value={ this.state.category }
+              onChange={ this.handleCategoryChange } >
+                <MenuItem value={ "opt1" } primaryText="Opt1" />
+                <MenuItem value={ "opt2" } primaryText="Opt2" />
+                <MenuItem value={ "opt3" } primaryText="Opt3" />
+            </SelectField>
           </div>
-        </form>
-      </div>
+        </div>
+        <div className="row" >
+          <CheckboxOrRadioGroup
+            className="col-md-4"
+            title="Triggers"
+            type="checkbox"
+            setName="triggers"
+            options={ ["trig1", "trig2", "trig3"] }
+            selectedOptions={ this.state.triggers }
+            controlFunc={ this.handleCheckboxSelection("triggers") } />
+          <CheckboxOrRadioGroup
+            className="col-md-4"
+            title="Descriptions"
+            type="checkbox"
+            setName="descriptions"
+            options={ ["desc1", "desc2", "desc3"] }
+            selectedOptions={ this.state.descriptions }
+            controlFunc={ this.handleCheckboxSelection("descriptions") } />
+          <CheckboxOrRadioGroup
+            className="col-md-4"
+            title="Post Events"
+            type="checkbox"
+            setName="postEvents"
+            options={ ["post1", "post2", "post3"] }
+            selectedOptions={ this.state.postEvents }
+            controlFunc={ this.handleCheckboxSelection("postEvents") } />
+        </div>
+        <div className="row" >
+          <div className="col-md-12 center-content" >
+            <TextField
+              hintText="Enter comment here"
+              floatingLabelText="Custom Comment"
+              onChange={ this.handleTextChange }
+              multiLine={ true }
+              rows={ 1 } />
+          </div>
+        </div>
+        <div className="row" >
+          <div className="col-md-12" style={{ "marginTop": "20px" }} >
+            <RaisedButton
+              label="Submit"
+              onClick={ this.handleSubmit }
+              fullWidth={ true } />
+            { generateErrorMessages(this.props.errors) }
+          </div>
+        </div>
+      </form>
     );
   }
 }
