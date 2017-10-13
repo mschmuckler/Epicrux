@@ -76,8 +76,15 @@ class SeizureForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const durationInSeconds = parseInt(this.state.durationSeconds) + (parseInt(this.state.durationMinutes) * 60);
+    let datetime;
+    if (this.state.date && this.state.timeOfDay) {
+      let datetime = this.state.date.toLocaleDateString() + " " + this.state.timeOfDay.toLocaleTimeString();
+      datetime = datetime.replace("/", "-");
+    } else {
+      datetime = "";
+    }
     const seizureInput = {
-      date: this.state.datetime,
+      date: datetime,
       duration: durationInSeconds,
       category: this.state.category,
       custom_comment: this.state.customComment,
@@ -95,13 +102,13 @@ class SeizureForm extends React.Component {
         <h1>Seizure Input</h1>
         <form className="container" >
           <div className="row" >
-            <div className="test-border col-md-6 center-content" >
+            <div className="col-md-6 center-content" >
               <DatePicker
                 hintText="Date"
                 value={ this.state.date }
                 onChange={ this.handleDateChange } />
             </div>
-            <div className="test-border col-md-6 center-content" >
+            <div className="col-md-6 center-content" >
               <TimePicker
                 hintText="Time of Day"
                 value={ this.state.timeOfDay }
@@ -109,7 +116,7 @@ class SeizureForm extends React.Component {
             </div>
           </div>
           <div className="row" >
-            <div className="test-border col-md-3" >
+            <div className="col-md-3" >
               <span>{ `Seconds: ${this.state.durationSeconds}` }</span>
               <Slider
                 value={ this.state.durationSeconds }
@@ -118,7 +125,7 @@ class SeizureForm extends React.Component {
                 max={ 59 }
                 step={ 1 } />
             </div>
-            <div className="test-border col-md-3" >
+            <div className="col-md-3" >
               <span>{ `Minutes: ${this.state.durationMinutes}` }</span>
               <Slider
                 value={ this.state.durationMinutes }
@@ -127,7 +134,7 @@ class SeizureForm extends React.Component {
                 max={ 59 }
                 step={ 1 } />
             </div>
-            <div className="test-border col-md-6 center-content" >
+            <div className="col-md-6 center-content" >
               <SelectField
                 floatingLabelText="Category"
                 value={ this.state.category }
@@ -140,7 +147,7 @@ class SeizureForm extends React.Component {
           </div>
           <div className="row" >
             <CheckboxOrRadioGroup
-              className="test-border col-md-4"
+              className="col-md-4"
               title="Triggers"
               type="checkbox"
               setName="triggers"
@@ -148,7 +155,7 @@ class SeizureForm extends React.Component {
               selectedOptions={ this.state.triggers }
               controlFunc={ this.handleCheckboxSelection("triggers") } />
             <CheckboxOrRadioGroup
-              className="test-border col-md-4"
+              className="col-md-4"
               title="Descriptions"
               type="checkbox"
               setName="descriptions"
@@ -156,7 +163,7 @@ class SeizureForm extends React.Component {
               selectedOptions={ this.state.descriptions }
               controlFunc={ this.handleCheckboxSelection("descriptions") } />
             <CheckboxOrRadioGroup
-              className="test-border col-md-4"
+              className="col-md-4"
               title="Post Events"
               type="checkbox"
               setName="postEvents"
@@ -165,7 +172,7 @@ class SeizureForm extends React.Component {
               controlFunc={ this.handleCheckboxSelection("postEvents") } />
           </div>
           <div className="row" >
-            <div className="test-border col-md-8 center-content" >
+            <div className="col-md-8 center-content" >
               <TextField
                 hintText="Enter comment here"
                 floatingLabelText="Custom Comment"
@@ -173,7 +180,7 @@ class SeizureForm extends React.Component {
                 multiLine={ true }
                 rows={ 1 } />
             </div>
-            <div className="test-border col-md-4" style={{ "marginTop": "10px" }} >
+            <div className="col-md-4" style={{ "marginTop": "20px" }} >
               <RaisedButton
                 label="Submit"
                 onClick={ this.handleSubmit } />
