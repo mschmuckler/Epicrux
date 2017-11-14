@@ -78,7 +78,7 @@ class SeizureForm extends React.Component {
     const durationInSeconds = parseInt(this.state.durationSeconds) + (parseInt(this.state.durationMinutes) * 60);
     let datetime;
     if (this.state.date && this.state.timeOfDay) {
-      let datetime = this.state.date.toLocaleDateString() + " " + this.state.timeOfDay.toLocaleTimeString();
+      datetime = this.state.date.toLocaleDateString() + " " + this.state.timeOfDay.toLocaleTimeString();
       datetime = datetime.replace("/", "-");
     } else {
       datetime = "";

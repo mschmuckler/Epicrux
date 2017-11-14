@@ -3,8 +3,8 @@ import {
   fetchSeizure,
   fetchSeizures,
   addSeizure
-} from '../../actions/seizure_actions';
-import SeizureIndex from './seizure_index';
+} from '../../../actions/seizure_actions';
+import SeizureTable from './seizure_table';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SeizureIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(SeizureTable);

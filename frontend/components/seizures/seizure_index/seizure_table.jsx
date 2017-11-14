@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class SeizureIndex extends React.Component {
+class SeizureTable extends React.Component {
   constructor(props) {
     super(props);
 
@@ -40,28 +40,14 @@ class SeizureIndex extends React.Component {
 
   render() {
     return (
-      <div className="container" >
-        <div className="row" >
-          <h1 className="test-border col-md-6" >Seizures</h1>
-          <div className="test-border col-md-6" >  
-            <Link to="/seizure-input"  >
-              <RaisedButton label="Add New" />
-            </Link>
-          </div>
-        </div>
-        <div className="row" >
-          <table className="test-border col-md-12" >
-            <thead>
-              { this.generateHeaderRow() }
-            </thead>
-            <tbody>
-              { this.generateSeizureRows() }
-            </tbody>
-          </table>
-        </div>
+      <div>
+        <table>
+          { this.generateHeaderRow() }
+          { this.generateSeizureRows() }
+        </table>
       </div>
     );
   }
 }
 
-export default SeizureIndex;
+export default SeizureTable;
