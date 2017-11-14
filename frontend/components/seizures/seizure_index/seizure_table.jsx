@@ -1,5 +1,9 @@
 import React from 'react';
 import {
+  militaryToMeridiem,
+  secondsToMinutes,
+} from './../../../util/time_util';
+import {
   BootstrapTable,
   TableHeaderColumn,
 } from 'react-bootstrap-table';
@@ -7,6 +11,11 @@ import {
 class SeizureTable extends React.Component {
   constructor(props) {
     super(props);
+
+    this.options = {
+      defaultSortName: 'date',  // default sort column name
+      defaultSortOrder: 'desc',  // default sort order
+    };
 
     this.generateSeizureTableData = this.generateSeizureTableData.bind(this);
   }
@@ -21,9 +30,9 @@ class SeizureTable extends React.Component {
         {
           id: seizure.id,
           date: seizure.date.slice(0,10),
-          time: seizure.date.slice(11,16),
+          time: militaryToMeridiem(seizure.date.slice(11,16)),
           category: seizure.category,
-          duration: seizure.duration,
+          duration: secondsToMinutes(seizure.duration),
         }
       );
     });
@@ -32,9 +41,9 @@ class SeizureTable extends React.Component {
   render() {
     return (
       <div>
-        <BootstrapTable data={ this.generateSeizureTableData() }>
-          <TableHeaderColumn dataField='id' isKey>ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='date'>Date</TableHeaderColumn>
+        <BootstrapTable data={ this.generateSeizureTableData() } options={ this.options } striped hover condensed>
+          <TableHeaderColumn dataField='id' isKey hidden></TableHeaderColumn>
+          <TableHeaderColumn dataField='date' dataSort>Date</TableHeaderColumn>
           <TableHeaderColumn dataField='time'>Time</TableHeaderColumn>
           <TableHeaderColumn dataField='category'>Category</TableHeaderColumn>
           <TableHeaderColumn dataField='duration'>Duration</TableHeaderColumn>

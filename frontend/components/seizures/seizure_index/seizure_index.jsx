@@ -10,7 +10,7 @@ const SeizureIndex = () => {
         <div className="col-xs-6">
           <h1>Seizures</h1>
         </div>
-        <div className="new-seizure-div center-content col-xs-6">
+        <div className="new-seizure-div col-xs-6">
           <Link to="/seizure-input">
             <RaisedButton label="Add New"/>
           </Link>
