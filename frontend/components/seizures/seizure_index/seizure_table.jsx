@@ -1,50 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import RaisedButton from 'material-ui/RaisedButton';
+import {
+  BootstrapTable,
+  TableHeaderColumn,
+} from 'react-bootstrap-table';
 
 class SeizureTable extends React.Component {
   constructor(props) {
     super(props);
 
-    this.generateSeizureRows = this.generateSeizureRows.bind(this);
-    this.generateHeaderRow = this.generateHeaderRow.bind(this);
+    this.generateSeizureTableData = this.generateSeizureTableData.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchSeizures();
   }
 
-  generateSeizureRows() {
+  generateSeizureTableData() {
     return Object.values(this.props.seizures).map(seizure => {
       return (
-        <tr key={ seizure.id } >
-          <td>{ seizure.date.slice(0,10) }</td>
-          <td>{ seizure.date.slice(11,16) }</td>
-          <td>{ seizure.category }</td>
-          <td>{ seizure.duration }</td>
-        </tr>
+        {
+          id: seizure.id,
+          date: seizure.date.slice(0,10),
+          time: seizure.date.slice(11,16),
+          category: seizure.category,
+          duration: seizure.duration,
+        }
       );
     });
-  }
-
-  generateHeaderRow() {
-    return (
-      <tr key="seizure-table-header" >
-        <td>Date</td>
-        <td>Time</td>
-        <td>Category</td>
-        <td>Duration</td>
-      </tr>
-    );
   }
 
   render() {
     return (
       <div>
-        <table>
-          { this.generateHeaderRow() }
-          { this.generateSeizureRows() }
-        </table>
+        <BootstrapTable data={ this.generateSeizureTableData() }>
+          <TableHeaderColumn dataField='id' isKey>ID</TableHeaderColumn>
+          <TableHeaderColumn dataField='date'>Date</TableHeaderColumn>
+          <TableHeaderColumn dataField='time'>Time</TableHeaderColumn>
+          <TableHeaderColumn dataField='category'>Category</TableHeaderColumn>
+          <TableHeaderColumn dataField='duration'>Duration</TableHeaderColumn>
+        </BootstrapTable>
       </div>
     );
   }
