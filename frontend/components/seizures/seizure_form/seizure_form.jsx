@@ -93,7 +93,9 @@ class SeizureForm extends React.Component {
       post_events: this.state.post_events,
     };
 
-    this.props.addSeizure(seizureInput);
+    this.props.addSeizure(seizureInput).then(
+      () => { this.props.history.push('/seizures') },
+    );
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   militaryToMeridiem,
-  secondsToMinutes,
+  secondsToWords,
 } from './../../../util/time_util';
 import {
   BootstrapTable,
@@ -32,7 +32,7 @@ class SeizureTable extends React.Component {
           date: seizure.date.slice(0,10),
           time: militaryToMeridiem(seizure.date.slice(11,16)),
           category: seizure.category,
-          duration: secondsToMinutes(seizure.duration),
+          duration: secondsToWords(seizure.duration),
         }
       );
     });
@@ -41,7 +41,15 @@ class SeizureTable extends React.Component {
   render() {
     return (
       <div>
-        <BootstrapTable data={ this.generateSeizureTableData() } options={ this.options } striped hover condensed>
+        <BootstrapTable
+          data={ this.generateSeizureTableData() }
+          options={ this.options }
+          scrollTop={ 'Top' }
+          height='400'
+          striped
+          hover
+          condensed
+        >
           <TableHeaderColumn dataField='id' isKey hidden></TableHeaderColumn>
           <TableHeaderColumn dataField='date' dataSort>Date</TableHeaderColumn>
           <TableHeaderColumn dataField='time'>Time</TableHeaderColumn>

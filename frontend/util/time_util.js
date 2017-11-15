@@ -21,11 +21,16 @@ export const militaryToMeridiem = (time) => {
   return timeValue;
 };
 
-export const secondsToMinutes = (duration) => {
+export const secondsToWords = (duration) => {
   duration = Number(duration);
 
   const minutes = Math.floor(duration / 60);
-  const seconds = duration % 60;
 
-  return `${minutes}m:${seconds}s`
+  if (minutes === 0) {
+    return "< 1 minute";
+  } else if (minutes === 1) {
+    return `1 minute`;
+  } else {
+    return `${minutes} minutes`;
+  }
 };
