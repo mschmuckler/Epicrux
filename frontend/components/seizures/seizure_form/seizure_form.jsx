@@ -105,13 +105,13 @@ class SeizureForm extends React.Component {
           <h1 className="col-md-12" >Seizure Input</h1>
         </div>
         <div className="row" >
-          <div className="col-md-6 center-content" >
+          <div className="col-sm-6 center-content" >
             <DatePicker
               hintText="Date"
               value={ this.state.date }
               onChange={ this.handleDateChange } />
           </div>
-          <div className="col-md-6 center-content" >
+          <div className="col-sm-6 center-content" >
             <TimePicker
               hintText="Time of Day"
               value={ this.state.timeOfDay }

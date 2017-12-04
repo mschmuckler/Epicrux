@@ -26,7 +26,9 @@ export const secondsToWords = (duration) => {
 
   const minutes = Math.floor(duration / 60);
 
-  if (minutes === 0) {
+  if (duration === 0) {
+    return "N/A";
+  } else if (minutes === 0) {
     return "< 1 minute";
   } else if (minutes === 1) {
     return `1 minute`;

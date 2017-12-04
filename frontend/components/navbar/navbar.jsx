@@ -5,9 +5,13 @@ import NavbarDropdown from './navbar_dropdown';
 const Navbar = (props) => {
   return (
     <nav id="navbar" >
-      <img
-        id="epicrux-logo"
-        src={ window.staticImages.epicruxLogo } />
+      <div id="navbar-logo-and-text">
+        <img
+          id="epicrux-logo"
+          src={ window.staticImages.epicruxLogo }
+        />
+        <p style={{ marginTop: "-6px" }}>Home</p>
+      </div>
       <div id="navbar-items" >
         <Link to="/seizures" >
           <button>Seizures</button>

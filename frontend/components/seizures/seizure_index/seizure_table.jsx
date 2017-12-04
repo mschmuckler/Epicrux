@@ -45,7 +45,7 @@ class SeizureTable extends React.Component {
           data={ this.generateSeizureTableData() }
           options={ this.options }
           scrollTop={ 'Top' }
-          height='400'
+          height='400px'
           striped
           hover
           condensed

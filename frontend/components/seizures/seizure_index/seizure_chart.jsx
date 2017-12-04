@@ -5,6 +5,10 @@ class SeizureChart extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchSeizures();
+  }
+
   render() {
     return (
       <div>chart</div>
